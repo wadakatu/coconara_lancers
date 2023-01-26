@@ -179,9 +179,29 @@ TOP周りを除くページは全てinertia.jsを用いてSPAで構築してい�
 
 > Build single-page apps, without building an API.<br>
 
+<div grid="~ cols-2 gap-2" m="-t-2">
+
 <v-clicks>
 
 ```php
+// Laravel
+class EventsController extends Controller
+{
+    public function show(Event $event)
+    {
+        return view('event.show', [
+            'event' => $event->only(
+                'id',
+                'title',
+                'description'
+            ),
+        ]);
+    }
+}
+```
+
+```php
+// Laravel x inertia.js
 use Inertia\Inertia;
 
 class EventsController extends Controller
@@ -201,6 +221,8 @@ class EventsController extends Controller
 
 </v-clicks>
 
+</div>
+
 <LdaLogo />
 
 <!--
@@ -214,8 +236,11 @@ vue-routerなど使わず、Laravelのルーティングに寄せることがで
 
 # 嫌いなところ
 
-<div class="h-[35vh] w-[45vw] flex justify-center items-center">
-  <p>inertia.jsが意外と辛い</p>
+<div class="grid grid-cols-1 gap-12">
+  <h4>inertia.jsが意外と辛い</h4>
+  <p class="text-3xl" v-click="1">・バックエンドとフロントエンドの密結合</p>
+  <p class="text-3xl" v-click="2">・情報が少ない</p>
+  <p class="text-3xl" v-click="3 ">・最近<span class="text-red-500">v1.0</span>がリリースされたので今後に期待</p>
 </div>
 
 <LdaLogo />
